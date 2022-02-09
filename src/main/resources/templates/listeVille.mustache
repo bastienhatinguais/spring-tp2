@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Exemple de template</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+    <style>
+      .alert-success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+      }
+
+      .alert {
+        position: relative;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Villes</h1>
+    {{#success}}
+    <div class="alert alert-success" role="alert">
+      {{ success }}
+    </div>
+    {{/success}}
+    <h2>Ajouter une ville</h2>
+    <form method="POST" action="add">
+      <label for="name">Nom</label>
+
+      <input type="text" id="name" name="name" required />
+      <label for="population">Population</label>
+
+      <input type="number" id="population" name="population" required />
+
+      <label for="pays">Pays</label>
+
+      <select name="pays" id="pays">
+        {{#pays}}
+        <option value="{{ id }}">{{ name }}</option>
+        {{/pays}}
+      </select>
+      <input type="submit" value="Ajouter" />
+    </form>
+    <h2>Liste des villes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Ville</th>
+          <th>Population</th>
+          <th>Pays</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#villes}}
+        <tr>
+          <td>
+            {{ cityName }}
+          </td>
+          <td>
+            {{ population }}
+          </td>
+          <td>
+            {{ countryName }}
+          </td>
+          <td>
+            <a href="edit?id={{ cityId }}">edit</a>
+
+            <a href="delete?id={{ cityId }}">delete</a>
+          </td>
+        </tr>
+        {{/villes}}
+      </tbody>
+    </table>
+  </body>
+</html>

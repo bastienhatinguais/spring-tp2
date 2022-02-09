@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Exemple de template</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  </head>
+
+  <body>
+    <h1>Modifier une ville</h1>
+    <form method="POST" action="save">
+      {{#city}}
+      <label for="name">Nom</label>
+
+      <input type="text" id="name" name="name" required value="{{ name }}" />
+      <label for="population">Population</label>
+
+      <input
+        type="number"
+        id="population"
+        name="population"
+        required
+        value="{{ population }}"
+      />
+
+      <label for="pays">Pays</label>
+
+      <select name="pays" id="pays">
+        {{#pays}}
+        <option value="{{ id }}">{{ name }}</option>
+        {{/pays}}
+      </select>
+
+      <input type="hidden" name="id" value="{{ id }}" />
+      <input type="submit" value="Modifier" />
+      {{/city}}
+    </form>
+  </body>
+</html>
